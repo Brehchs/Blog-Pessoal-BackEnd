@@ -7,9 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -20,12 +20,12 @@ public class Postagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	@Size(min = 5, max = 100)
+	@NotBlank(message = "O atributo título é obrigatório!!")
+	@Size(min = 5, max = 100, message="O campo precisa ter no mínimo 5 e no máximo 100 caracteres!")
 	private String titulo;
 	
-	@NotNull(message = "O atributo tecto é Obrigatório!")
-	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
+	@NotNull(message="O atributo texto é obrigatório!!")
+	@Size(min = 10, max = 1000)
 	private String texto;
 	
 	@UpdateTimestamp
