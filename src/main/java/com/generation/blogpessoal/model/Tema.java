@@ -1,4 +1,4 @@
-package org.generation.blogPessoal.model;
+package com.generation.blogpessoal.model;
 
 import java.util.List;
 
@@ -13,42 +13,51 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-@Entity 
-@Table(name = "tb_tema")
+@Entity
+@Table(name = "tb_temas")
 public class Tema {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
+	private Long id;
+
 	@NotNull
 	private String descricao;
+
+	/*
+	 * e bom ter em mente que nas anotacoes tipo OneToMany, a primeira palavra One
+	 * vai sempre se referir a classe que foi inserida. Ou seja One dessa classe
+	 * aqui to many da outra classe. E na postagem foi ManyToOne ou seja, many dessa
+	 * classe postagem to One da outra classe
+	   
+	   by: Lucca*/
 	
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
-	
-	
-	public long getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public List<Postagem> getPostagem() {
 		return postagem;
 	}
+
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
 
 }
