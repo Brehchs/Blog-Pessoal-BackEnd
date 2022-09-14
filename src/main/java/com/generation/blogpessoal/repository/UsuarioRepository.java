@@ -10,7 +10,7 @@ import com.generation.blogpessoal.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	/*SELECT usuario FROM tb_usuarios WHERE usuario = "mirelle@gmail.com"*/
+	
 	public Optional<Usuario> findByUsuario(String usuario);
 
 }
